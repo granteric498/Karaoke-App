@@ -14,9 +14,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>The Music Man</title>
+
+    <script>
+        $(function() {
+            $('#select-artist').click(function() {
+                $.lyricFinder({
+                    onSuccess: function(response) {}
+                });
+                $.wikiFinder({
+                    onSuccess: function(response) {}
+                });
+                $.videoFinder({
+                    onSuccess: function(response) {}
+                });
+            });
+        });
+  </script>
 </head>
 <body>
-    <!-- top nav bar area -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"><h1>The Music Man</h1></a>
@@ -26,7 +41,6 @@
         </nav>
     </header>
     
-    <!-- Hero content -->
     <div class="main-container">
         <div class="video">
             <video autoplay muted loop id="myVideo">
@@ -44,6 +58,9 @@
             </div>
         </div>
 
+        <div class="videoResult"></div>
+        <div class="lyricsResult"></div>
+
         <div id="artist-div"></div>
         
     </div>
@@ -52,13 +69,10 @@
     <div class="page-break1">
         <h1>See results from all across the web!</h1> 
     </div>
-    <!-- instagram api integration area -->
     <div class="container">
-        
-
+    
    
     
-    <!-- down arrow -->
     <div class="arrow bounce"></div>
 </body>
 </html>

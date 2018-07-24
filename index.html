@@ -9,24 +9,37 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    <link rel = "stylesheet" type="text/css" Href="../Project1/assets/css/style.css">
-    <link rel = "javascript" type="text/script" Href="../Project1/assets/javascript/script.js">
+    <link rel = "stylesheet" type="text/css" Href="./assets/css/style.css">
+    <script type="text/javascript" src="./assets/javascript/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>East Wave Chicago</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>The Music Man</title>
+    <script>
+        $(function() {
+            $('#select-artist').click(function() {
+                $.lyricFinder({
+                    onSuccess: function(response) {}
+                });
+                $.wikiFinder({
+                    onSuccess: function(response) {}
+                });
+                $.videoFinder({
+                    onSuccess: function(response) {}
+                });
+            });
+        });
+        </script>
 </head>
 <body>
-    <!-- top nav bar area -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"><h1>The Music Man</h1></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            
         </nav>
     </header>
     
-    <!-- Hero content -->
     <div class="main-container">
         <div class="video">
             <video autoplay muted loop id="myVideo">
@@ -37,26 +50,27 @@
             <h1>Search for your favorite song!</h1>
             <div class="signup-container2">
                 <form>
-                    <input class="songInput" type="text" value="Enter song name here" size="50px"></input>
-                    <input class="bandInput" type="text" value="Enter band name here" size="50px"></input>
-                    <input class="submit" type="submit" value="submit">
+                    <input class="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
+                    <input id="artist-input" type="text" placeholder="Enter band name here" size="50px"></input>
+                    <input id="select-artist" type="submit" value="submit">
                 </form>
             </div>
         </div>
+
+        <div class="videoResult"></div>
+        <div class="lyricsResult"></div>
+
+        <div id="artist-div"></div>
         
     </div>
-
-    <!-- page break, instagram intros -->
+<div id = "example"></div>
     <div class="page-break1">
         <h1>See results from all across the web!</h1> 
     </div>
-    <!-- instagram api integration area -->
     <div class="container">
-        
-
+    
    
     
-    <!-- down arrow -->
     <div class="arrow bounce"></div>
 </body>
 </html>

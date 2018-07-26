@@ -75,7 +75,7 @@ $("#select-artist").on("click", function(event) {
     
     // Defining variables for each text input.
     var artistSearch = document.getElementById("artist-input").value;
-    var trackSearch = document.getElementsById("songInput").value;
+    var trackSearch = $('#songInput').val();
     
     // Makes sure the musixLyrics div is empty because we will be using it later.
     document.getElementById("musixLyrics").textContent = "";

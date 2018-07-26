@@ -6,7 +6,7 @@ $(document).ready(function () {
 
             let bingApiUrl = 'https://api.cognitive.microsoft.com/bing/v7.0/search';
             var options = $.extend({
-                'keyword': '' + 'azlyrics',
+                'keyword': '' + 'genius',
                 'apiKey': '',
             }, option || {});
 
@@ -29,16 +29,16 @@ $(document).ready(function () {
                         }
                         console.log(array);
                         for (i = 0; i < array.length; i++) {
-                            if (array[i].includes('azlyrics') === true) {
+                            if (array[i].includes('genius') === true) {
                                 console.log(response.webPages.value[i].snippet);
                                 console.log(response.webPages.value[i].displayUrl);
                                 console.log(array[i]);
                                 let element = `
-                                <br><div class="lyrics">
-                                 <a href="${array[i]}" target="_blank">${array[i]}</a>
+                                <div class="lyrics">
+                                 <a href="${array[i]}" target="_blank">Click here for full lyrics.</a>
                                 </div>
                                 `;
-                                $('.lyricsResult').append(element);
+                                $('.lyricsResult').html(element);
                             }
                         }
                     }
@@ -86,11 +86,11 @@ $(document).ready(function () {
                                 console.log(response.webPages.value[i].displayUrl);
                                 console.log(array[i]);
                                 let element = `
-                                <br><div class="lyrics">
+                                <br><div class="wikipedia">
                                  <a href="${array[i]}" target="_blank">${array[i]}</a>
                                 </div><br>
                                 `;
-                                $('.lyricsResult').append(element);
+                                $('.wikiResult').html(element);
                             }
                         }
                     }
@@ -125,14 +125,26 @@ $(document).ready(function () {
                 success: function (response) {
                     if ($.isFunction(options.onSuccess)) {
                         console.log(response);
-                        var link = response.videos.value[0].embedHtml;
-                        console.log(link);
-                        let element = `
-                                <br><div class="video">
-                                <a>${link}</a>
-                                </div>
-                            `;
-                        $('.videoResult').append(element);
+                        console.log(response.webPages.value);
+                        var array = [];
+                        var data = response.webPages.value
+                        for (i = 0; i < data.length; i++) {
+                            array.push(data[i].url);
+                        }
+                        console.log(array);
+                        for (i = 0; i < array.length; i++) {
+                            if (array[i].includes('youtube') === true) {
+                                console.log(response.webPages.value[i].snippet);
+                                console.log(response.webPages.value[i].displayUrl);
+                                console.log(array[i]);
+                                let element = `
+                                <br><div class="youtube">
+                                <a href="${array[i]}" target="_blank"><img src="assets/images/youtubeLogo.png"></img></a>
+                                </div><br>
+                                `;
+                                $('.videoResult').html(element);
+                            }
+                        }
                     }
                 },
                 error: function (response) {

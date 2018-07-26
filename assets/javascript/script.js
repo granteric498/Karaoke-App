@@ -1,10 +1,12 @@
 // Bing API - Genius Lyrics
 $(document).ready(function () {
     $("#ghost").hide();
+    $(".resultsAlert").hide();
     $(".arrow").hide();
-    $(".bigAssButton").hide();
-    
-    
+    $(".videoResultHeading").hide();
+    $(".fullWrapper").hide();
+    $(".navWrapper").hide();
+
     (function ($) {
         // Function that was named in HTML. This is the name of the function that will return website for 100% lyrics.
         $.lyricFinder = function (option) {
@@ -79,8 +81,11 @@ $("#select-artist").on("click", function(event) {
     event.preventDefault();
 
     // shows users results have loaded
+    $(".resultsAlert").show();
     $(".arrow").show();
-    
+    $(".fullWrapper").show();
+    $(".navWrapper").show();
+
     // Defining variables for each text input.
     var artistSearch = document.getElementById("artist-input").value;
     var trackSearch = $('#songInput').val();
@@ -262,7 +267,7 @@ $("#ghost").on("click", function(event) {
                 },
                 success: function (response) {
                     if ($.isFunction(options.onSuccess)) {
-                        $(".bigAssButton").show();
+                        $(".videoResultHeading").show();
                         console.log(response);
                         console.log(response.webPages.value);
                         var array = [];
@@ -315,7 +320,7 @@ $("#ghost").on("click", function(event) {
             // Image of artist
             var artistImage = $("<img>").attr("src", response.thumb_url);
             // Number of fans tracking artist
-            var trackerCount = $("<h2>").text(response.tracker_count + " fans tracking this artist");
+            var trackerCount = $("<h4>").text(response.tracker_count + " fans tracking this artist");
             // Number of upcoming artist's events
             var upcomingEvents = $("<h2>").text(response.upcoming_event_count + " upcoming events");
             // Link to see artist's tour dates
@@ -324,7 +329,8 @@ $("#ghost").on("click", function(event) {
             // Clear artist-div
             $("#artist-div").empty();
             // Add all previous information
-            $("#artist-div").append(artistURL, artistImage, trackerCount, upcomingEvents, goToArtist);
+            $("#artist-div").append(artistURL, artistImage, upcomingEvents, goToArtist);
+            $("#trackingResults").html(trackerCount);
             // Clear text inputs on submit
             $("#artist-input").val("")
             $("#songInput").val("")
@@ -337,6 +343,9 @@ $("#ghost").on("click", function(event) {
         searchBandsInTown(inputArtist);
     })
 
+
+
+    // smooth scroll 
     $("a").on('click', function(event) {
 
         // Make sure this.hash has a value before overriding default behavior

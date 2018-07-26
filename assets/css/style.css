@@ -117,17 +117,29 @@ video {
 }
 
 
-.bigAssButton {
-    margin: 50px auto;
+.videoResultHeading {
+    text-align: center;
+}
+
+#trackingResults {
+    text-align: center;
+}
+.videoResult {
+    text-align: center;
+}
+
+.container #musixLyrics {
+    font-size: 1.5em;
+    width: 50%;
     position: relative;
     left: 50%;
-    transform: translate(-50%,-50%);
-    height: 100px;
-    width: 350px;
-    font-size: 2em;
-    border-radius: 5px;
-    background-color: green;
+    transform: translate(-50%, 0);
+}
 
+.container .lyricsResult {
+    position: relative;
+    left: 40%;
+    
 }
 
 /* footer */

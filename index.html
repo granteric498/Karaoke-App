@@ -17,6 +17,8 @@
 
     <script>
         $(function() {
+            // When submit is clicked, run these functions
+            // These functions are for Bing API
             $('#select-artist').click(function() {
                 $.lyricFinder({
                     onSuccess: function(response) {}
@@ -51,28 +53,36 @@
             <h1>Search for your favorite song!</h1>
             <div class="signup-container2">
                 <form>
+                    <!-- Song and Band Name text inputs -->
                     <input id="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
                     <input id="artist-input" type="text" placeholder="Enter band name here" size="50px"></input>
+                    <!-- Submit button -->
                     <button id="select-artist" type="submit" value="submit">Submit</button>
+                    <!-- Button that is being hidden with CSS, but is needed for MusixMatch API -->
                     <button id="ghost">Ghost</button>
                 </form>
             </div>
         </div>
 
+        <!-- 
+        Divs to display results:
+        1. Youtube - Bing
+        2. MusixMatch Lyrics
+        3. Genius Lyrics - Bing
+        4. Wikipedia Page for song - Bing
+        5. Bands in Town information
+         -->
         <div class="videoResult"></div>
-        <div class="twitterResult"></div><br>
-        <div class="instaResult"></div>
         <div id="musixLyrics"></div>
         <div class="lyricsResult"></div>
         <div class="wikiResult"></div>
-
         <div id="artist-div"></div>
         
     </div>
 <div id = "example"></div>
     <!-- page break, instagram intros -->
     <div class="page-break1">
-        <h1>See results from all across the web!</h1> 
+        <h2>See results from all across the web!</h1> 
     </div>
     <div class="container">
     

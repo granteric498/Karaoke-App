@@ -130,6 +130,14 @@ video {
 
 }
 
+.container #musixLyrics {
+    width: 50%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+    font-size: 1.5em;
+}
+
 /* footer */
 
 #footer {

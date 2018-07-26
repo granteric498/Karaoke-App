@@ -18,6 +18,12 @@
     <script>
         $(function() {
             $('#select-artist').click(function() {
+                // $.twitterFinder({
+                //     onSuccess: function(response) {}
+                // });
+                // $.instaFinder({
+                //     onSuccess: function(response) {}
+                // });
                 $.lyricFinder({
                     onSuccess: function(response) {}
                 });
@@ -53,13 +59,18 @@
                 <form>
                     <input class="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
                     <input id="artist-input" type="text" placeholder="Enter band name here" size="50px"></input>
-                    <input id="select-artist" type="submit" value="submit">
+                    <button id="select-artist" type="submit" value="submit">Submit</button>
+                    <button id="ghost">Ghost</button>
                 </form>
             </div>
         </div>
 
         <div class="videoResult"></div>
+        <div class="twitterResult"></div><br>
+        <div class="instaResult"></div>
+        <div id="musixLyrics"></div>
         <div class="lyricsResult"></div>
+        <div class="wikiResult"></div>
 
         <div id="artist-div"></div>
         

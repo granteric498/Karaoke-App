@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    // Bands in Town API
     function searchBandsInTown(artist) {
       var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
       $.ajax({
@@ -21,6 +22,88 @@ $(document).ready(function(){
       var inputArtist = $("#artist-input").val().trim();
       searchBandsInTown(inputArtist);
     });
+
+    $("#select-artist").on("click", function(event) {
+        event.preventDefault();
+        
+        // Musixmatch API
+    
+        var artistSearch = document.getElementById("artist-input").value;
+        var trackSearch = document.getElementsByClassName("songInput").value;
+        document.getElementById("musixLyrics").textContent = "";
+          $.ajax({
+            type: "GET",
+            data: {
+                apikey:"445d6196c08dc2b7490929f18149d684",
+                q_artist: artistSearch,
+                q_track: trackSearch,
+                format:"jsonp",
+                callback:"jsonp_callback"
+            },
+            url: "https://api.musixmatch.com/ws/1.1/track.search",
+            dataType: "jsonp",
+            jsonpCallback: 'jsonp_callback',
+            contentType: 'application/json',
+            success: function(data) {
+                console.log(data);
+                console.log(data.message.body.track_list[0].track.track_id); 
+                // console.log(data.message.body.track_list[0].track.album_coverart_350x350)
+                // console.log(data.message.body.track_list[0].track.lyrics_id)
+                // console.log(rand.track.track_id)
+                var thisTrack = data.message.body.track_list[0].track.track_id
+                // console.log(thisPic)
+        
+                var p = document.createElement("p");
+                p.textContent = thisTrack;
+                p.id = thisTrack;
+        
+                document.getElementById("musixLyrics").appendChild(p).style.opacity = 0;
+                document.getElementById("ghost").click();
+        
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }    
+          });
+        
+          $("#ghost").on("click", function(event) {
+            event.preventDefault();
+    
+            var trackId = document.getElementById("musixLyrics").textContent;
+            console.log(trackId)
+          $.ajax({
+            type: "GET",
+            data: {
+                apikey:"445d6196c08dc2b7490929f18149d684",
+                track_id: trackId,
+                format:"jsonp",
+                callback:"jsonp_callback"
+            },
+            url: "https://api.musixmatch.com/ws/1.1/track.lyrics.get",
+            dataType: "jsonp",
+            jsonpCallback: 'jsonp_callback',
+            contentType: 'application/json',
+            success: function(data) {
+               console.log(data);
+               // console.log(data.message.body.lyrics.lyrics_body); 
+              var lyricsBody = data.message.body.lyrics.lyrics_body.split(/\s+/).slice(0,100).join(" ")+ "...";
+               
+                var j = document.createElement("p")
+                j.textContent = lyricsBody
+                document.getElementById("musixLyrics").appendChild(j)
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }    
+          });
+         });
+        });
+
+    // Bing Search API - Genius Lyrics
     (function($) {
         $.lyricFinder = function(option) {
     
@@ -28,7 +111,7 @@ $(document).ready(function(){
     
             let bingApiUrl = 'https://api.cognitive.microsoft.com/bing/v7.0/search';
             var options = $.extend({
-                'keyword': '' + 'azlyrics',
+                'keyword': '' + 'genius',
                 'apiKey': '',
             }, option || {});
     
@@ -51,16 +134,16 @@ $(document).ready(function(){
                         }
                         console.log(array);
                         for (i = 0; i < array.length; i++) {
-                            if (array[i].includes('azlyrics') === true) {
+                            if (array[i].includes('genius') === true) {
                                 console.log(response.webPages.value[i].snippet);
                                 console.log(response.webPages.value[i].displayUrl);
                                 console.log(array[i]);
                                 let element = `
-                                <br><div class="lyrics">
-                                 <a href="${array[i]}" target="_blank">${array[i]}</a>
+                                <div class="lyrics">
+                                 <a href="${array[i]}" target="_blank">Click here for full lyrics.</a>
                                 </div>
                                 `;
-                                $('.lyricsResult').append(element);
+                                $('.lyricsResult').html(element);
                             }
                         }
                     }
@@ -73,6 +156,7 @@ $(document).ready(function(){
         }
     })(jQuery);
     
+    // Bing Search API - Wikipedia
     (function($) {
         $.wikiFinder = function(option) {
     
@@ -108,11 +192,11 @@ $(document).ready(function(){
                                 console.log(response.webPages.value[i].displayUrl);
                                 console.log(array[i]);
                                 let element = `
-                                <br><div class="lyrics">
+                                <br><div class="wikipedia">
                                  <a href="${array[i]}" target="_blank">${array[i]}</a>
                                 </div><br>
                                 `;
-                                $('.lyricsResult').append(element);
+                                $('.wikiResult').html(element);
                             }
                         }
                     }
@@ -125,6 +209,7 @@ $(document).ready(function(){
         }
     })(jQuery);
     
+    // Bing Search API - Youtube Video
     (function($) {
         $.videoFinder = function(option) {
     
@@ -147,14 +232,26 @@ $(document).ready(function(){
                 success: function(response) {
                     if ($.isFunction(options.onSuccess)) {
                         console.log(response);
-                        var link = response.videos.value[0].embedHtml;
-                        console.log(link);
-                        let element = `
-                                <br><div class="video">
-                                <a>${link}</a>
-                                </div>
-                            `;
-                            $('.videoResult').append(element);
+                        console.log(response.webPages.value);
+                        var array = [];
+                        var data = response.webPages.value
+                        for (i = 0; i < data.length; i++) {
+                            array.push(data[i].url);
+                        }
+                        console.log(array);
+                        for (i = 0; i < array.length; i++) {
+                            if (array[i].includes('youtube') === true) {
+                                console.log(response.webPages.value[i].snippet);
+                                console.log(response.webPages.value[i].displayUrl);
+                                console.log(array[i]);
+                                let element = `
+                                <br><div class="youtube">
+                                <a href="${array[i]}" target="_blank"><img src="assets/images/youtubeLogo.png"></img></a>
+                                </div><br>
+                                `;
+                                $('.videoResult').html(element);
+                            }
+                        }
                     }
                 },
                 error: function(response) {
@@ -166,6 +263,7 @@ $(document).ready(function(){
     })(jQuery);
     });
 
+// Bands in Town API?
 function searchBandsInTown(artist) {
 
   var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
@@ -193,5 +291,8 @@ $("#select-artist").on("click", function(event) {
   var inputArtist = $("#artist-input").val().trim();
   searchBandsInTown(inputArtist);
 });
-});
 
+
+$(document).ready(function(){
+    
+});

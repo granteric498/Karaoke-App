@@ -1,1 +1,90 @@
-//gitkeep
+/* html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+body {
+    background-color: black;
+}
+
+nav {
+    border-bottom: 5px solid gold;
+}
+
+.brand-logo {
+    font-family: "Lobster", cursive;
+}
+
+#content {
+    padding: 15px;
+    z-index: 2;
+    text-align: center;
+    overflow: hidden;
+    word-break: break-word;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 100px;
+
+}
+
+#search-box {
+    border: 2px solid gold;
+    border-radius: 10px;
+    height: 10%;
+    opacity: 0.9;
+}
+
+#select-artist {
+    font-family: "Lobster", cursive;
+    height: 50px;
+    width: 125px;
+    background-color: #e53935;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
+
+.page-break {
+    margin-top: 100px;
+    font-family: "Lobster", cursive;
+    background-color: #e53935;
+    text-align: center;
+    color: white;
+    width: 100vh;
+    height: 150px;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.step1 {
+    position: absolute;
+    top: 550px;
+}
+
+.step2 {
+    position: absolute;
+    top: 850px;
+}
+
+.step3 {
+    position: absolute;
+    top: 1150px;
+}
+
+video {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+} */

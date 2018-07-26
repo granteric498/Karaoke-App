@@ -45,40 +45,45 @@
             <nav class="red darken-1">
                 <div class="nav-wrapper container red darken-1">
                     <a href="#" class="brand-logo flow-text">Instant Karaoke</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-                        <i class="material-icons">menu</i>
-                    </a>
-                    <ul class="right hide-on-med-and-down">
-                        <li>
-                            <a href="#searchAnchor">Search</a>
-                        </li>
-                        <li>
-                            <a href="#step1">Music Video</a>
-                        </li>
-                        <li>
-                            <a href="#step2">Lyrics</a>
-                        </li>
-                        <li>
-                            <a href="#step3">Shows</a>
-                        </li>
-                    </ul>
+                    
+                    <div class="navWrapper">
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                            <i class="material-icons">menu</i>
+                        </a>
+                        <ul class="right hide-on-med-and-down">
+                            <li>
+                                <a href="#searchAnchor">Search</a>
+                            </li>
+                            <li>
+                                <a href="#step1">Music Video</a>
+                            </li>
+                            <li>
+                                <a href="#step2">Lyrics</a>
+                            </li>
+                            <li>
+                                <a href="#step3">Shows</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
             <!-- Method to create a dropdown menu at small screen sizes -->
-            <ul class="sidenav" id="mobile-demo">
-                <li>
-                    <a href="#searchAnchor">Search</a>
-                </li>
-                <li>
-                    <a href="#step1">Music Video</a>
-                </li>
-                <li>
-                    <a href="#step2">Lyrics</a>
-                </li>
-                <li>
-                    <a href="#step3">Shows</a>
-                </li>
-            </ul>
+            <div class="navWrapper">
+                <ul class="sidenav" id="mobile-demo">
+                    <li>
+                        <a href="#searchAnchor">Search</a>
+                    </li>
+                    <li>
+                        <a href="#step1">Music Video</a>
+                    </li>
+                    <li>
+                        <a href="#step2">Lyrics</a>
+                    </li>
+                    <li>
+                        <a href="#step3">Shows</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
 
@@ -106,6 +111,7 @@
                             <input id="select-artist" type="submit" value="Search">
                             <button id="ghost">Ghost</button>
                         </form>
+                        <p class="resultsAlert">Scroll down to see your song</p>
                         <i class="arrow down"></i>
                     </div>
                 </div>
@@ -115,64 +121,70 @@
 </div>
 
 <!-- page break element with instructions to play video -->
-<div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
-    <div class="stepContainer" id="step1">
-        <div class="page-break step" >
-            <div class="row">
-                <div class="col s12" >
-                    <h1>Step 1: Play the music video to hear the song</h1>
+<div class="fullWrapper">
+    <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+        <div class="stepContainer" id="step1">
+            <div class="page-break step" >
+                <div class="row">
+                    <div class="col s12" >
+                        <h1>Step 1: Play the music video to hear the song</h1>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- element api call is linked to -->
-<div class="videoResult"></div>
-<button class="bigAssButton">Click here to load the song in a new window!</button>
+    <!-- element api call is linked to -->
+    <h1 class="videoResultHeading">Click on YouTube to play your song</h1>
+    <div id="trackingResults"></div>
+    <div class="videoResult"></div>
 
-<!-- page break element with lyrics -->
-<div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
-    <div class="stepContainer" id="step2">
+    <!-- page break element with lyrics -->
+    <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+        <div class="stepContainer" id="step2">
+            <div class="page-break step">
+                <div class="row">
+                    <div class="col s12">
+                        <h1>Step 2: Sing along to these lyrics!</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- element api call is linked to -->
+    <div class="container">
+        <div id="musixLyrics"></div>
+        <div class="lyricsResult"></div>
+    </div>
+
+
+    <!-- page break element with showinfo -->
+    <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+        <div class="stepContainer" id="step3">
+            <div class="page-break step">
+                <div class="row">
+                    <div class="col s12">
+                        <h1>Step 3: See the show!</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- element api call is linked to -->
+    <div id="artist-div"></div>
+        
+
+    <!-- footer -->
+    <div class="stepContainer" id="footer">
         <div class="page-break step">
             <div class="row">
                 <div class="col s12">
-                    <h1>Step 2: Sing along to these lyrics!</h1>
+                    <h1>Thanks for singing along with us!</h1>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- element api call is linked to -->
-<div id="musixLyrics"></div>
-<div class="lyricsResult"></div>
 
-
-<!-- page break element with showinfo -->
-<div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
-    <div class="stepContainer" id="step3">
-        <div class="page-break step">
-            <div class="row">
-                <div class="col s12">
-                    <h1>Step 3: See the show!</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- element api call is linked to -->
-<div id="artist-div"></div>
-    
-
-<!-- footer -->
-<div class="stepContainer" id="footer">
-    <div class="page-break step">
-        <div class="row">
-            <div class="col s12">
-                <h1>Thanks for singing along with us!</h1>
-            </div>
-        </div>
-    </div>
-</div>
+</div><!-- .fullWrapper  -->
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>

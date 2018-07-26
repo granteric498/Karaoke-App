@@ -1,13 +1,23 @@
-/* html {
+/* Universal  */
+
+html {
     font-size: 1em;
     line-height: 1.4;
 }
 
 body {
     background-color: black;
+    color: white;
+    height: 100%;
 }
 
+.container {
+    height: 100%;
+}
+
+/* top navigation bar */
 nav {
+    
     border-bottom: 5px solid gold;
 }
 
@@ -15,18 +25,40 @@ nav {
     font-family: "Lobster", cursive;
 }
 
+
+/* Hero content  */
+.heroWrapper {
+    height: 525px;
+}
+
+video {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.justifyCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
 #content {
     padding: 15px;
     z-index: 2;
     text-align: center;
     overflow: hidden;
-    word-break: break-word;
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    margin-bottom: 100px;
+}
 
+
+.card-content {
+    text-align: center;
 }
 
 #search-box {
@@ -46,10 +78,32 @@ nav {
     cursor: pointer;
 }
 
+#select-artist:hover {
+    font-weight: bold;
+    box-shadow: 5px 5px 5px black;
+}
 
+.container i {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+
+/* Steps to sing karaoke */
+
+.stepContainer {
+    padding: 64px 0;
+}
 
 .page-break {
-    margin-top: 100px;
+    margin-top: 10px;
     font-family: "Lobster", cursive;
     background-color: #e53935;
     text-align: center;
@@ -62,29 +116,26 @@ nav {
     
 }
 
-.step1 {
-    position: absolute;
-    top: 550px;
-}
 
-.step2 {
-    position: absolute;
-    top: 850px;
-}
-
-.step3 {
-    position: absolute;
-    top: 1150px;
-}
-
-video {
-    display: block;
-    height: 100%;
-    position: absolute;
-    top: 50%;
+.bigAssButton {
+    margin: 50px auto;
+    position: relative;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    z-index: -1;
-} */
+    transform: translate(-50%,-50%);
+    height: 100px;
+    width: 350px;
+    font-size: 2em;
+    border-radius: 5px;
+    background-color: green;
+
+}
+
+/* footer */
+
+#footer {
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+
+

@@ -1,5 +1,10 @@
 // Bing API - Genius Lyrics
 $(document).ready(function () {
+    $("#ghost").hide();
+    $(".arrow").hide();
+    $(".bigAssButton").hide();
+    
+    
     (function ($) {
         // Function that was named in HTML. This is the name of the function that will return website for 100% lyrics.
         $.lyricFinder = function (option) {
@@ -72,6 +77,9 @@ $(document).ready(function () {
 $("#select-artist").on("click", function(event) {
     // Prevents page from automatically refreshing
     event.preventDefault();
+
+    // shows users results have loaded
+    $(".arrow").show();
     
     // Defining variables for each text input.
     var artistSearch = document.getElementById("artist-input").value;
@@ -254,6 +262,7 @@ $("#ghost").on("click", function(event) {
                 },
                 success: function (response) {
                     if ($.isFunction(options.onSuccess)) {
+                        $(".bigAssButton").show();
                         console.log(response);
                         console.log(response.webPages.value);
                         var array = [];
@@ -327,4 +336,31 @@ $("#ghost").on("click", function(event) {
         var inputArtist = $("#artist-input").val().trim();
         searchBandsInTown(inputArtist);
     })
+
+    $("a").on('click', function(event) {
+
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+    
+          // Store hash
+          var hash = this.hash;
+    
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 800, function(){
+       
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+
+
+
 })
+
+

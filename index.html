@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel = "stylesheet" type="text/css" Href="../Project1/assets/css/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    <link rel = "stylesheet" type="text/css" Href="./assets/css/style.css">
-    <script type="text/javascript" src="./assets/javascript/script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>The Music Man</title>
+    <title>Instant Karaoke</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="./assets/javascript/script.js"></script>
     <script>
         $(function() {
             // When submit is clicked, run these functions
@@ -33,61 +37,147 @@
         });
   </script>
 </head>
+
 <body>
+<!-- top nav bar with responsive menu items -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><h1>The Music Man</h1></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
+        <div class="navbar-fixed">
+            <nav class="red darken-1">
+                <div class="nav-wrapper container red darken-1">
+                    <a href="#" class="brand-logo flow-text">Instant Karaoke</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="#searchAnchor">Search</a>
+                        </li>
+                        <li>
+                            <a href="#step1">Music Video</a>
+                        </li>
+                        <li>
+                            <a href="#step2">Lyrics</a>
+                        </li>
+                        <li>
+                            <a href="#step3">Shows</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Method to create a dropdown menu at small screen sizes -->
+            <ul class="sidenav" id="mobile-demo">
+                <li>
+                    <a href="#searchAnchor">Search</a>
+                </li>
+                <li>
+                    <a href="#step1">Music Video</a>
+                </li>
+                <li>
+                    <a href="#step2">Lyrics</a>
+                </li>
+                <li>
+                    <a href="#step3">Shows</a>
+                </li>
+            </ul>
+        </div>
     </header>
-    
+
+<!-- video background -->
     <div class="main-container">
         <div class="video">
             <video autoplay muted loop id="myVideo">
-                <source src="assets/videos/musicVideo.mp4" type="video/mp4">
+                <source src="assets/videos/musicVideo.mp4" type="video/mp4" align="middle">
             </video>
         </div>
-        <div class="jumbotron">
-            <h1>Search for your favorite song!</h1>
-            <div class="signup-container2">
-                <form>
-                    <!-- Song and Band Name text inputs -->
-                    <input id="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
-                    <input id="artist-input" type="text" placeholder="Enter band name here" size="50px"></input>
-                    <!-- Submit button -->
-                    <button id="select-artist" type="submit" value="submit">Submit</button>
-                    <!-- Button that is being hidden with CSS, but is needed for MusixMatch API -->
-                    <button id="ghost">Ghost</button>
-                </form>
+    </div>
+
+<!-- hero content and user submission form, pick a song -->
+    <div class="heroWrapper slideUp" id="searchAnchor">
+    <div class="container justifyCenter" id="content search">
+        <div class="row">
+            <div class="col s1"></div>
+            <div class="col s10">
+                <div class="card white" id="search-box">
+                    <div class="card-content black-text">
+                            <h4>Search for a song to sing along!</h4>
+                        <form>
+                            <input class="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
+                            <input id="artist-input" type="text" placeholder="Enter band name here" size="50px"></input>
+                            <input id="select-artist" type="submit" value="Search">
+                            <button id="ghost">Ghost</button>
+                        </form>
+                        <i class="arrow down"></i>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- 
-        Divs to display results:
-        1. Youtube - Bing
-        2. MusixMatch Lyrics
-        3. Genius Lyrics - Bing
-        4. Wikipedia Page for song - Bing
-        5. Bands in Town information
-         -->
-        <div class="videoResult"></div>
-        <div id="musixLyrics"></div>
-        <div class="lyricsResult"></div>
-        <div class="wikiResult"></div>
-        <div id="artist-div"></div>
-        
+<!-- page break element with instructions to play video -->
+<div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+    <div class="stepContainer" id="step1">
+        <div class="page-break step" >
+            <div class="row">
+                <div class="col s12" >
+                    <h1>Step 1: Play the music video to hear the song</h1>
+                </div>
+            </div>
+        </div>
     </div>
-<div id = "example"></div>
-    <!-- page break, instagram intros -->
-    <div class="page-break1">
-        <h2>See results from all across the web!</h1> 
+</div>
+<!-- element api call is linked to -->
+<div class="videoResult"></div>
+<button class="bigAssButton">Click here to load the song in a new window!</button>
+
+<!-- page break element with lyrics -->
+<div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+    <div class="stepContainer" id="step2">
+        <div class="page-break step">
+            <div class="row">
+                <div class="col s12">
+                    <h1>Step 2: Sing along to these lyrics!</h1>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="container">
+</div>
+<!-- element api call is linked to -->
+<div id="musixLyrics"></div>
+<div class="lyricsResult"></div>
+
+
+<!-- page break element with showinfo -->
+<div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+    <div class="stepContainer" id="step3">
+        <div class="page-break step">
+            <div class="row">
+                <div class="col s12">
+                    <h1>Step 3: See the show!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- element api call is linked to -->
+<div id="artist-div"></div>
     
-   
-    
-    <div class="arrow bounce"></div>
+
+<!-- footer -->
+<div class="stepContainer" id="footer">
+    <div class="page-break step">
+        <div class="row">
+            <div class="col s12">
+                <h1>Thanks for singing along with us!</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 </body>
+
 </html>

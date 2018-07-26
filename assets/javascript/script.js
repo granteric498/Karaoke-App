@@ -51,6 +51,83 @@ $(document).ready(function () {
         }
     })(jQuery);
 
+// MusixMatch
+$("#select-artist").on("click", function(event) {
+    event.preventDefault();
+var artistSearch = document.getElementById("artist-input").value;
+var trackSearch = document.getElementsByClassName("songInput").value;
+document.getElementById("musixLyrics").textContent = "";
+  $.ajax({
+    type: "GET",
+    data: {
+        apikey:"445d6196c08dc2b7490929f18149d684",
+        q_artist: artistSearch,
+        q_track: trackSearch,
+        format:"jsonp",
+        callback:"jsonp_callback"
+    },
+    url: "https://api.musixmatch.com/ws/1.1/track.search",
+    dataType: "jsonp",
+    jsonpCallback: 'jsonp_callback',
+    contentType: 'application/json',
+    success: function(data) {
+        console.log(data);
+        console.log(data.message.body.track_list[0].track.track_id); 
+        // console.log(data.message.body.track_list[0].track.album_coverart_350x350)
+        // console.log(data.message.body.track_list[0].track.lyrics_id)
+        // console.log(rand.track.track_id)
+        var thisTrack = data.message.body.track_list[0].track.track_id
+        // console.log(thisPic)
+
+        var p = document.createElement("p");
+        p.textContent = thisTrack;
+        p.id = thisTrack;
+
+        document.getElementById("musixLyrics").appendChild(p).style.opacity = 0;
+        document.getElementById("ghost").click();
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+    }    
+  });
+ });
+
+$("#ghost").on("click", function(event) {
+    event.preventDefault();
+    var trackId = document.getElementById("musixLyrics").textContent;
+    console.log(trackId)
+  $.ajax({
+    type: "GET",
+    data: {
+        apikey:"445d6196c08dc2b7490929f18149d684",
+        track_id: trackId,
+        format:"jsonp",
+        callback:"jsonp_callback"
+    },
+    url: "https://api.musixmatch.com/ws/1.1/track.lyrics.get",
+    dataType: "jsonp",
+    jsonpCallback: 'jsonp_callback',
+    contentType: 'application/json',
+    success: function(data) {
+       console.log(data);
+       // console.log(data.message.body.lyrics.lyrics_body); 
+      var lyricsBody = data.message.body.lyrics.lyrics_body.split(/\s+/).slice(0,100).join(" ")+ "...";
+       
+        var j = document.createElement("p")
+        j.textContent = lyricsBody
+        document.getElementById("musixLyrics").appendChild(j)
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+    }    
+  });
+ });
+
     (function ($) {
         $.wikiFinder = function (option) {
 
@@ -184,5 +261,5 @@ $(document).ready(function () {
         var inputArtist = $("#artist-input").val().trim();
         searchBandsInTown(inputArtist);
 
-    });
+    })
 })

@@ -162,6 +162,8 @@ $(document).ready(function () {
 
             $("#artist-div").empty();
             $("#artist-div").append(artistURL, artistImage, trackerCount, upcomingEvents, goToArtist);
+            $("#artist-input").val("")
+            $("#songInput").val("")
         });
     }
     //to prevent default action from happeing and to clear the search bars clicking enter
@@ -169,7 +171,6 @@ $(document).ready(function () {
         event.preventDefault();
         var inputArtist = $("#artist-input").val().trim();
         searchBandsInTown(inputArtist);
-        // $("#artist-input").val("")
-        // $("#songInput").val("")
+
     });
 })

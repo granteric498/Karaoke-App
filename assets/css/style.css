@@ -116,7 +116,12 @@ video {
 
 #videoResultHeading {
     font-size-adjust: 0.8;
-    text-shadow: 1px 1px 2px red, 0 0 25px whitesmoke, 0 0 5px #e53935; 
+         
+        color: black;
+    background-color: white;
+    padding: 5px;
+    border: 5px double #e53935;
+    border-radius: 5px; 
 }
 
 #artist-div {
@@ -229,7 +234,7 @@ a {
         color: #e53935;
     background-color: white;
     padding: 5px;
-    border: 5px solid #e53935;
+    border: 5px double #e53935;
     border-radius: 5px;
 }
 

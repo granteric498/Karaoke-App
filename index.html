@@ -43,11 +43,12 @@
     <!-- top nav bar with responsive menu items -->
     <header>
         <div class="navbar-fixed">
-            <nav class="red darken-1">
-                <div class="nav-wrapper container red darken-1">
-                    <a href="#" class="brand-logo flow-text">Instant Karaoke</a>
+            <nav class="red darken-1" role="navigation">
+                <div class="container red darken-1">
+                    <div class="nav-wrapper">
+                        <a href="#" class="brand-logo flow-text">Instant Karaoke</a>
 
-                    <div class="navWrapper">
+                        <!-- <div class="navWrapper"> -->
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
                             <i class="material-icons">menu</i>
                         </a>
@@ -65,28 +66,34 @@
                                 <a href="#step3">Shows</a>
                             </li>
                         </ul>
+                        <!-- </div> -->
                     </div>
-                </div>
             </nav>
             <!-- Method to create a dropdown menu at small screen sizes -->
-            <div class="navWrapper">
-                <ul class="sidenav" id="mobile-demo">
-                    <li>
-                        <a href="#searchAnchor">Search</a>
-                    </li>
-                    <li>
-                        <a href="#step1">Music Video</a>
-                    </li>
-                    <li>
-                        <a href="#step2">Lyrics</a>
-                    </li>
-                    <li>
-                        <a href="#step3">Shows</a>
-                    </li>
-                </ul>
+            <!-- <div class="navWrapper"> -->
+            <ul class="sidenav" id="mobile-demo">
+                <li>
+                    <a href="#searchAnchor">Search</a>
+                </li>
+                <li>
+                    <a href="#step1">Music Video</a>
+                </li>
+                <li>
+                    <a href="#step2">Lyrics</a>
+                </li>
+                <li>
+                    <a href="#step3">Shows</a>
+                </li>
+            </ul>
+            <!-- </div> -->
             </div>
-        </div>
     </header>
+
+    </div>
+    </div>
+    </nav>
+
+
 
     <!-- video background -->
     <div class="main-container">
@@ -107,7 +114,7 @@
                         <div class="card-content black-text">
                             <h4>Search for a song to sing along!</h4>
                             <form>
-                                <input class="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
+                                <input id="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
                                 <input id="artist-input" type="text" placeholder="Enter band name here" size="50px"></input>
                                 <input id="select-artist" type="submit" value="Search">
                                 <button id="ghost">Ghost</button>

@@ -15,37 +15,38 @@
     <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="./assets/javascript/script.js"></script>
     <script>
-        $(function() {
+        $(function () {
             // When submit is clicked, run these functions
             // These functions are for Bing API
-            $('#select-artist').click(function() {
+            $('#select-artist').click(function () {
                 $.lyricFinder({
-                    onSuccess: function(response) {}
+                    onSuccess: function (response) { }
                 });
                 $.wikiFinder({
-                    onSuccess: function(response) {}
+                    onSuccess: function (response) { }
                 });
                 $.videoFinder({
-                    onSuccess: function(response) {}
+                    onSuccess: function (response) { }
                 });
             });
         });
-  </script>
+    </script>
 </head>
 
 <body>
-<!-- top nav bar with responsive menu items -->
+    <!-- top nav bar with responsive menu items -->
     <header>
         <div class="navbar-fixed">
             <nav class="red darken-1">
                 <div class="nav-wrapper container red darken-1">
                     <a href="#" class="brand-logo flow-text">Instant Karaoke</a>
-                    
+
                     <div class="navWrapper">
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
                             <i class="material-icons">menu</i>
@@ -87,7 +88,7 @@
         </div>
     </header>
 
-<!-- video background -->
+    <!-- video background -->
     <div class="main-container">
         <div class="video">
             <video autoplay muted loop id="myVideo">
@@ -96,100 +97,101 @@
         </div>
     </div>
 
-<!-- hero content and user submission form, pick a song -->
+    <!-- hero content and user submission form, pick a song -->
     <div class="heroWrapper slideUp" id="searchAnchor">
-    <div class="container justifyCenter" id="content search">
-        <div class="row">
-            <div class="col s1"></div>
-            <div class="col s10">
-                <div class="card white" id="search-box">
-                    <div class="card-content black-text">
-                            <h4>Search for a song to sing along!</h4>
-                        <form>
-                            <input class="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
-                            <input id="artist-input" type="text" placeholder="Enter band name here" size="50px"></input>
-                            <input id="select-artist" type="submit" value="Search">
-                            <button id="ghost">Ghost</button>
-                        </form>
-                        <p class="resultsAlert">Scroll down to see your song</p>
-                        <i class="arrow down"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- page break element with instructions to play video -->
-<div class="fullWrapper">
-    <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
-        <div class="stepContainer" id="step1">
-            <div class="page-break step" >
-                <div class="row">
-                    <div class="col s12" >
-                        <h1>Step 1: Play the music video to hear the song</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- element api call is linked to -->
-    <h1 class="videoResultHeading">Click on YouTube to play your song</h1>
-    <div id="trackingResults"></div>
-    <div class="videoResult"></div>
-
-    <!-- page break element with lyrics -->
-    <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
-        <div class="stepContainer" id="step2">
-            <div class="page-break step">
-                <div class="row">
-                    <div class="col s12">
-                        <h1>Step 2: Sing along to these lyrics!</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- element api call is linked to -->
-    <div class="container">
-        <div id="musixLyrics"></div>
-        <div class="lyricsResult"></div>
-    </div>
-
-
-    <!-- page break element with showinfo -->
-    <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
-        <div class="stepContainer" id="step3">
-            <div class="page-break step">
-                <div class="row">
-                    <div class="col s12">
-                        <h1>Step 3: See the show!</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- element api call is linked to -->
-    <div id="artist-div"></div>
-        
-
-    <!-- footer -->
-    <div class="stepContainer" id="footer">
-        <div class="page-break step">
+        <div class="container justifyCenter" id="content search">
             <div class="row">
-                <div class="col s12">
-                    <h1>Thanks for singing along with us!</h1>
+                <div class="col s1"></div>
+                <div class="col s10">
+                    <div class="card white" id="search-box">
+                        <div class="card-content black-text">
+                            <h4>Search for a song to sing along!</h4>
+                            <form>
+                                <input id="songInput" type="text" placeholder="Enter song name here" size="50px"></input>
+                                <input id="artist-input" type="text" placeholder="Enter band name here" size="50px"></input>
+                                <input id="select-artist" type="submit" value="Search">
+                                <button id="ghost">Ghost</button>
+                            </form>
+                            <p class="resultsAlert">Scroll down to see your song</p>
+                            <i class="arrow down"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-</div><!-- .fullWrapper  -->
+    <!-- page break element with instructions to play video -->
+    <div class="fullWrapper">
+        <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+            <div class="stepContainer" id="step1">
+                <div class="page-break step">
+                    <div class="row">
+                        <div class="col s12">
+                            <h1>Step 1: Play the music video to hear the song</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- element api call is linked to -->
+        <h1 class="videoResultHeading">Click on YouTube to play your song</h1>
+        <div id="trackingResults"></div>
+        <div class="videoResult"></div>
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init();
-</script>
+        <!-- page break element with lyrics -->
+        <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+            <div class="stepContainer" id="step2">
+                <div class="page-break step">
+                    <div class="row">
+                        <div class="col s12">
+                            <h1>Step 2: Sing along to these lyrics!</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- element api call is linked to -->
+        <div class="container">
+            <div id="musixLyrics"></div>
+            <div class="lyricsResult"></div>
+        </div>
+
+
+        <!-- page break element with showinfo -->
+        <div data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine">
+            <div class="stepContainer" id="step3">
+                <div class="page-break step">
+                    <div class="row">
+                        <div class="col s12">
+                            <h1>Step 3: See the show!</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- element api call is linked to -->
+        <div id="artist-div"></div>
+
+
+        <!-- footer -->
+        <div class="stepContainer" id="footer">
+            <div class="page-break step">
+                <div class="row">
+                    <div class="col s12">
+                        <h1>Thanks for singing along with us!</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- .fullWrapper  -->
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

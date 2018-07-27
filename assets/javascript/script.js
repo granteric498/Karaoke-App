@@ -451,117 +451,117 @@ $(document).ready(function () {
         }
     })(jQuery);
 
-// MusixMatch API
-$("#select-artist").on("click", function(event) {
-    // Prevents page from automatically refreshing
-    event.preventDefault();
+    // MusixMatch API
+    $("#select-artist").on("click", function (event) {
+        // Prevents page from automatically refreshing
+        event.preventDefault();
 
-    // shows users results have loaded
-    $(".resultsAlert").show();
-    $(".arrow").show();
-    $(".fullWrapper").show();
-    $(".navWrapper").show();
+        // shows users results have loaded
+        $(".resultsAlert").show();
+        $(".arrow").show();
+        $(".fullWrapper").show();
+        $(".navWrapper").show();
 
-    // Defining variables for each text input.
-    var artistSearch = document.getElementById("artist-input").value;
-    var trackSearch = $('#songInput').val();
-    
-    // Makes sure the musixLyrics div is empty because we will be using it later.
-    document.getElementById("musixLyrics").textContent = "";
+        // Defining variables for each text input.
+        var artistSearch = document.getElementById("artist-input").value;
+        var trackSearch = $('#songInput').val();
 
-    // AJAX Call
-  $.ajax({
-    type: "GET",
-    data: {
-        // API Key
-        apikey:"445d6196c08dc2b7490929f18149d684",
-        // query for artist is the variable from artist input
-        q_artist: artistSearch,
-        q_track: trackSearch,
-        format:"jsonp",
-        callback:"jsonp_callback"
-    },
-    url: "https://api.musixmatch.com/ws/1.1/track.search",
-    dataType: "jsonp",
-    jsonpCallback: 'jsonp_callback',
-    contentType: 'application/json',
-    success: function(data) {
-        console.log(data);
-        console.log(data.message.body.track_list[0].track.track_id); 
-        // console.log(data.message.body.track_list[0].track.album_coverart_350x350)
-        // console.log(data.message.body.track_list[0].track.lyrics_id)
-        // console.log(rand.track.track_id)
-        
-        // Using song and artist info, we go through the Musixmatch database to find a track id.
-        // We will then use this track id to get the lyrics
-        var thisTrack = data.message.body.track_list[0].track.track_id
-        // console.log(thisPic)
+        // Makes sure the musixLyrics div is empty because we will be using it later.
+        document.getElementById("musixLyrics").textContent = "";
 
-        // Create paragraph tag and save our track id # in it.
-        var p = document.createElement("p");
-        p.textContent = thisTrack;
-        p.id = thisTrack;
+        // AJAX Call
+        $.ajax({
+            type: "GET",
+            data: {
+                // API Key
+                apikey: "445d6196c08dc2b7490929f18149d684",
+                // query for artist is the variable from artist input
+                q_artist: artistSearch,
+                q_track: trackSearch,
+                format: "jsonp",
+                callback: "jsonp_callback"
+            },
+            url: "https://api.musixmatch.com/ws/1.1/track.search",
+            dataType: "jsonp",
+            jsonpCallback: 'jsonp_callback',
+            contentType: 'application/json',
+            success: function (data) {
+                console.log(data);
+                console.log(data.message.body.track_list[0].track.track_id);
+                // console.log(data.message.body.track_list[0].track.album_coverart_350x350)
+                // console.log(data.message.body.track_list[0].track.lyrics_id)
+                // console.log(rand.track.track_id)
 
-        // Hide this track id#
-        document.getElementById("musixLyrics").appendChild(p).style.opacity = 0;
-        
-        // Run ghost button
-        document.getElementById("ghost").click();
+                // Using song and artist info, we go through the Musixmatch database to find a track id.
+                // We will then use this track id to get the lyrics
+                var thisTrack = data.message.body.track_list[0].track.track_id
+                // console.log(thisPic)
 
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
-        $('#musixLyrics').html("No track id # found on Musixmatch!");
-    }    
-  });
- });
+                // Create paragraph tag and save our track id # in it.
+                var p = document.createElement("p");
+                p.textContent = thisTrack;
+                p.id = thisTrack;
 
- // Run ghost button. This button is "clicked" because two AJAX calls are made to display lyrics
- // First is to find track id #. Second is to use that number to find lyrics.
-$("#ghost").on("click", function(event) {
-    event.preventDefault();
-    // Using the same track id #, we save it into a variable to find the lyrics.
-    var trackId = document.getElementById("musixLyrics").textContent;
-    console.log(trackId);
-  $.ajax({
-    type: "GET",
-    data: {
-        apikey:"445d6196c08dc2b7490929f18149d684",
-        // Same variable with track id #
-        track_id: trackId,
-        format:"jsonp",
-        callback:"jsonp_callback"
-    },
-    url: "https://api.musixmatch.com/ws/1.1/track.lyrics.get",
-    dataType: "jsonp",
-    jsonpCallback: 'jsonp_callback',
-    contentType: 'application/json',
-    success: function(data) {
-        console.log(data);
-        // console.log(data.message.body.lyrics.lyrics_body); 
+                // Hide this track id#
+                document.getElementById("musixLyrics").appendChild(p).style.opacity = 0;
 
-        // We have the lyrics, but there is extra information at the end. We split the extra space
-        // and keep the first 100 words. We end the lyrics with a "..." to know we have reached the
-        // end.
-        var lyricsBody = data.message.body.lyrics.lyrics_body.split(/\s+/).slice(0,100).join(" ")+ "...";
-       
-        // Lyrics are saved in a p tag and displayed in musixLyrics div.
-        var j = document.createElement("p")
-        j.textContent = lyricsBody
-        document.getElementById("musixLyrics").appendChild(j)
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
-        $('#musixLyrics').html("No lyrics found on Musixmatch!");
-    }    
-  });
- });
+                // Run ghost button
+                document.getElementById("ghost").click();
 
- // Bing API - Wikipedia site page for song
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                $('#musixLyrics').html("No track id # found on Musixmatch!");
+            }
+        });
+    });
+
+    // Run ghost button. This button is "clicked" because two AJAX calls are made to display lyrics
+    // First is to find track id #. Second is to use that number to find lyrics.
+    $("#ghost").on("click", function (event) {
+        event.preventDefault();
+        // Using the same track id #, we save it into a variable to find the lyrics.
+        var trackId = document.getElementById("musixLyrics").textContent;
+        console.log(trackId);
+        $.ajax({
+            type: "GET",
+            data: {
+                apikey: "445d6196c08dc2b7490929f18149d684",
+                // Same variable with track id #
+                track_id: trackId,
+                format: "jsonp",
+                callback: "jsonp_callback"
+            },
+            url: "https://api.musixmatch.com/ws/1.1/track.lyrics.get",
+            dataType: "jsonp",
+            jsonpCallback: 'jsonp_callback',
+            contentType: 'application/json',
+            success: function (data) {
+                console.log(data);
+                // console.log(data.message.body.lyrics.lyrics_body); 
+
+                // We have the lyrics, but there is extra information at the end. We split the extra space
+                // and keep the first 100 words. We end the lyrics with a "..." to know we have reached the
+                // end.
+                var lyricsBody = data.message.body.lyrics.lyrics_body.split(/\s+/).slice(0, 100).join(" ") + "...";
+
+                // Lyrics are saved in a p tag and displayed in musixLyrics div.
+                var j = document.createElement("p")
+                j.textContent = lyricsBody
+                document.getElementById("musixLyrics").appendChild(j)
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                $('#musixLyrics').html("No lyrics found on Musixmatch!");
+            }
+        });
+    });
+
+    // Bing API - Wikipedia site page for song
     (function ($) {
         $.wikiFinder = function (option) {
             // Keyword = text inputs
@@ -722,27 +722,27 @@ $("#ghost").on("click", function(event) {
 
 
     // smooth scroll 
-    $("a").on('click', function(event) {
+    $("a").on('click', function (event) {
 
         // Make sure this.hash has a value before overriding default behavior
         if (this.hash !== "") {
-          // Prevent default anchor click behavior
-          event.preventDefault();
-    
-          // Store hash
-          var hash = this.hash;
-    
-          // Using jQuery's animate() method to add smooth page scroll
-          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 800, function(){
-       
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function () {
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
         } // End if
-      });
+    });
 
 
 

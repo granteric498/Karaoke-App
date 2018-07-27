@@ -6,6 +6,7 @@ $(document).ready(function () {
     $("#videoResultHeading").hide();
     $(".fullWrapper").hide();
     $(".navWrapper").hide();
+    $("#followers").hide();
     (function ($) {
         // Function that was named in HTML. This is the name of the function that will return website for 100% lyrics.
         $.lyricFinder = function (option) {
@@ -84,6 +85,7 @@ $(document).ready(function () {
         $(".arrow-down").show();
         $(".fullWrapper").show();
         $(".navWrapper").show();
+        $("#followers").show();
 
         // Defining variables for each text input.
         var artistSearch = document.getElementById("artist-input").value;
@@ -321,6 +323,8 @@ $(document).ready(function () {
             var goToArtist = $("<a>").attr("href", response.url).append("Get Tickets");
             // Number of upcoming artist's events
             var upcomingEvents = $("<p>").text(response.upcoming_event_count + " Upcoming Events").addClass("flow-text");
+            // Followers
+            var trackerCount = $("<h3>").text(response.tracker_count + " fans tracking this artist");
 
 
             
@@ -329,8 +333,11 @@ $(document).ready(function () {
             $("#artist-div").empty();
             // Add all previous information
             $("#tix").empty();
+            $("#followers").empty();
+            $("")
             $("#artist-div").append(artistURL, artistImage);
             $("#tix").append(goToArtist, upcomingEvents);
+            $("#followers").html(trackerCount);
             // Clear text inputs on submit
             $("#artist-input").val("");
             $("#songInput").val("");

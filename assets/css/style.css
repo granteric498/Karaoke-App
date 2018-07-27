@@ -2,12 +2,15 @@
 
 html {
     font-size: 1em;
+    max-width: 100vw;
+    max-height: 100vh;
 }
 
 body {
     background-color: black;
     color: white;
-    height: 100%;
+    height: 100vh;
+    max-width: 100vw;
 }
 
 .container {
@@ -223,14 +226,15 @@ a {
 }
 
 .container .lyricsResult {
-    position: relative;
-    left: 40%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
     
 }
 
-#musixLyrics p {
+/* #musixLyrics p {
     font-size-adjust: 0.6;
-}
+} */
 
 .lyrics a {
     font-family: "Lobster", cursive;

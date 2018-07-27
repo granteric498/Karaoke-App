@@ -324,7 +324,7 @@ $(document).ready(function () {
             // Number of upcoming artist's events
             var upcomingEvents = $("<p>").text(response.upcoming_event_count + " Upcoming Events").addClass("flow-text");
             // Followers
-            var trackerCount = $("<h3>").text(response.tracker_count + " fans tracking this artist");
+            var trackerCount = $("<h4>").text(response.tracker_count + " fans tracking this artist");
 
 
             

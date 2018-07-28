@@ -16,3 +16,5 @@ The APIs we used were:
   3. Bands in Town API
     a. This API lets the users know how many fans are following our particular artist.
     b. It also lets the users know about the artist's upcoming concerts.
+
+Total technologies used: HTML, CSS, SCSS, Materialize, JavaScript, jQuery, AJAX, MusixMatch API, Bing Custom Search API, Bands in Town API, Mobile Responsiveness
